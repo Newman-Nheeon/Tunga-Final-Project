@@ -1,16 +1,17 @@
+// Modules
 const express = require('express');
-const { pool } = require('./config/database');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
+// Imports
+const { pool } = require('./config/database');
 const movieRouter = require('./routes/movieRouter');
-const app = express();
-
-
+const { corsConfig } = require('./config/config');
 
 // Middleware
-app.use(cors());
+const app = express();
+app.use(cors(corsConfig));
 app.use(bodyParser.json());
-
 
 // Database connection check
 pool.query('SELECT NOW()', (err, res) => {
@@ -25,7 +26,7 @@ pool.query('SELECT NOW()', (err, res) => {
 app.use('/api', movieRouter);
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
