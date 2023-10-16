@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+body {
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  background: #000;
+}
+
+/* Toggle Styles */
+
+#viewport {
+  padding-left: 250px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#content {
+  width: 100%;
+  position: relative;
+  margin-right: 0;
+}
+
+/* Sidebar Styles */
+
+#sidebar {
+  z-index: 1000;
+  position: fixed;
+  right: 0px;
+  width: 200px;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border-left: 2px solid darkred;
+}
+
+#sidebar header {
+  background-color: darkred;
+  font-size: 20px;
+  line-height: 52px;
+  text-align: center;
+}
+
+#sidebar header a {
+  color: #fff;
+  display: block;
+  text-decoration: none;
+}
+
+#sidebar header a:hover {
+  color: #fff;
+}
+
+#sidebar .nav{
+  text-align: center;
+  justify-content: center;
+  padding-top: 30px;
+
+}
+
+#sidebar .nav li {
+  width: 100%;
+  height: auto;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+#sidebar .nav a{
+  color: #fff;
+  font-size: 18px;
+  padding: 16px 24px;
+  text-decoration: none;
+  text-align: center;
+}
+
+#sidebar .nav a:hover{
+  background: none;
+  color: #ECEFF1;
+}
+
+#sidebar .nav a i{
+  margin-right: 16px;
+}
+.navbar .nav h3{
+  text-align: center;
+  justify-content: center;
+}
+
+#btn {
+  color: darkred;
+  font-weight: 600;
+  border-bottom: 2px solid darkred;
+  transition: 0.6s ease;
+  text-align: center;
+  justify-content: center;
+}
+
+#btn:hover {
+ color: #000;
+ border-bottom: 2px solid #000;
+}
+
+img {
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+img {
+  pointer-events: none;
+}
+.movie_card{
+  padding: 0 !important;
+  width: 5rem;
+  margin:14px; 
+  border-radius: 10px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.movie_card img{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 15rem;
+  width: 100%;
+}
+.movie_info{
+  color: #5e5c5c;
+}
+
+.movie_info i{
+  font-size: 20px;
+}
+.card-title{
+  width: 80%;
+  height: 4rem;
+}
+.play_button{
+  background-color: #ff3d49;
+     position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  right: 20px;
+  bottom: 111px;
+  font-size: 32px;
+  padding-left: 21px;
+  padding-top: 5px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.credits{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 2px solid #8e24aa;
+  font-size: 18px;
+}
+.credits .card-body{
+  padding: 0;
+}
+.credits p{
+  padding-top: 15px;
+  padding-left: 18px;
+}
+.credits .card-body i{
+  color: #8e24aa;
+}
+
+div.card.movie_card {
+ width: 30%;
+}
+
+/* MEDIA SCREEN AREA */
+
+@media (max-width: 993px) {
+  div.card.movie_card {
+    width: 40%;
+   }
+}
+
+
+@media (max-width: 770px) {
+  div.card.movie_card {
+    width: 70%;
+   }
+}
