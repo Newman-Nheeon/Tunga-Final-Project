@@ -81,11 +81,12 @@ const AddMovieModal = ({ show, handleClose, onMovieAdded }) => {
         />
         <br />
         <Form.Control 
-          type="text" 
-          placeholder="Plot" 
-          value={plot}
-          onChange={e => setPlot(e.target.value)}
-        />
+            as="textarea" 
+            placeholder="Plot"
+            rows={3} 
+            value={plot} 
+            onChange={e => setPlot(e.target.value)} 
+          />
         <br />
         <Form.Control 
           type="date" 
