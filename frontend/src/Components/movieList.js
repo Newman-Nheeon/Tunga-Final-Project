@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import MovieCard from './MovieCard';
+import MovieContext from './MovieContext';
+
+
 
 const MovieList = () => {
-  const [moviesData, setMoviesData] = useState([]);
+  const context = useContext(MovieContext);
 
   useEffect(() => {
-    // Fetching the movie data from the provided API using axios
     const fetchMovies = async () => {
       try {
         const response = await axios.get('http://localhost:3005/api/movies');
-        setMoviesData(response.data);
+        context.setMovies(response.data); // Assuming setMovies is a function in your context
       } catch (error) {
         console.error("Error fetching the movies:", error);
       }
     };
-
-    // Calling the fetch function inside useEffect
     fetchMovies();
   }, []);
+
+  console.log("Movies in MovieList:", context.movies); // Check the data before rendering the movie cards
 
   return (
     <div className="container mt-5">
       <h2 className="text-center pb-4">Favourite Movies...</h2>
       <div className="row justify-content-center">
-        {moviesData.map(movie => (
+        {context.movies.map(movie => (
+          
           <MovieCard 
+            key={movie.id} 
             id={movie.id}  
             thumbnailURL={movie.thumbnailURL}
             name={movie.name}

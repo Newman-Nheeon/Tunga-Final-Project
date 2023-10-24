@@ -4,8 +4,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 const corsConfig = {
     origin: function (origin, callback) {
         const whitelist = isProduction 
-            ? ['https://yourfrontenddomain.com']
-            : ['http://localhost:3001'];
+            ? ['http://localhost:3002']
+            : ['http://localhost:3000'];
 
         if (whitelist.indexOf(origin) !== -1 || !origin) {
             callback(null, true);

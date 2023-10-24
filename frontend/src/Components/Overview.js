@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-
+import { MovieProvider } from './MovieContext';
 import NavbarComponent from './NavBar';
 import AddMovieModal from './AddMovie';
-import SearchArea from './Search';
-import SortArea from './sort';
-import MovieList from './movieList';
+import SearchAndSortArea from './Search&Sort';
+import MovieList from './MovieList';
+
 
 const Overview = () => {
   const [show, setShow] = useState(false);  // State to control the visibility of the modal
@@ -17,13 +17,18 @@ const Overview = () => {
     setMoviesData(prevMovies => [...prevMovies, newMovie]);
   };
 
+  const handleMoviesUpdate = (movies) => {
+    setMoviesData(movies);
+  };
+
   return (
     <div>
-      <NavbarComponent handleShow={handleShow} />
-      <AddMovieModal show={show} handleClose={handleClose} onMovieAdded={handleMovieAdded} />
-      <SearchArea />
-      <SortArea />
-      <MovieList movies={moviesData} />
+      <MovieProvider>
+        <NavbarComponent handleShow={handleShow} />
+        <AddMovieModal show={show} handleClose={handleClose} onMovieAdded={handleMovieAdded} />
+        <SearchAndSortArea onSort={handleMoviesUpdate} />
+        <MovieList movies={moviesData} />
+      </MovieProvider>
     </div>
   );
 }

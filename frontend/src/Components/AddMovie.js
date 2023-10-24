@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import MovieContext from './MovieContext';
 
 const AddMovieModal = ({ show, handleClose, onMovieAdded }) => {
   const [name, setName] = useState('');
@@ -13,11 +14,13 @@ const AddMovieModal = ({ show, handleClose, onMovieAdded }) => {
   const [notes, setNotes] = useState('');
   const [thumbnailURL, setThumbnailURL] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // State for error message
+  const [errorMessage, setErrorMessage] = useState('');
+  const context = useContext(MovieContext);
 
-  const handleSubmit = async () => {
-    setIsSuccess(false); // Reset success state
-    setErrorMessage(''); // Reset error message
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSuccess(false);
+    setErrorMessage('');
 
     const movieData = {
       name,
@@ -33,10 +36,15 @@ const AddMovieModal = ({ show, handleClose, onMovieAdded }) => {
       const response = await axios.post('http://localhost:3005/api/movies', movieData);
 
       if (response.data.id) {
-        setIsSuccess(true); // Set the success state
-        onMovieAdded(response.data); // Update the movie list in the parent component
+        setIsSuccess(true);
+
+        // Update the movie list directly in context
+        context.setMovies(prevMovies => [...prevMovies, response.data]);
+
+        // Inform parent about movie addition (if necessary)
+        onMovieAdded && onMovieAdded(response.data);
+
         setTimeout(() => {
-          // Reset form and success state after 3 seconds
           setName('');
           setGenre('');
           setPlot('');
@@ -45,13 +53,12 @@ const AddMovieModal = ({ show, handleClose, onMovieAdded }) => {
           setNotes('');
           setThumbnailURL('');
           setIsSuccess(false);
-          handleClose(); // Optionally close the modal
+          handleClose();
         }, 3000);
       } else {
         setErrorMessage('Failed to add the movie.');
       }
     } catch (error) {
-      console.error("There was an error saving the movie data", error);
       setErrorMessage(`Error: ${error.message || "Unknown error occurred"}`);
     }
   };
