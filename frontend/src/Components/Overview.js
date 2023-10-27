@@ -3,7 +3,7 @@ import { MovieProvider } from './MovieContext';
 import NavbarComponent from './NavBar';
 import AddMovieModal from './AddMovie';
 import SearchAndSortArea from './Search&Sort';
-import MovieList from './MovieList';
+import MovieList from './movieList';
 
 
 const Overview = () => {
