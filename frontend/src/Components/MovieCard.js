@@ -21,7 +21,8 @@ const MovieCard = ({
 
   const deleteMovie = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3005/api/movies/${id}`);
+      const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3005';
+      const response = await axios.delete(`${BASE_URL}/api/movies/${id}`);
       if (response.status === 200) {
         setDeleteMessage('Movie successfully deleted.');
 

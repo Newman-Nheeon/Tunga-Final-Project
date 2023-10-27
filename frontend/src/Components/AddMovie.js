@@ -31,9 +31,9 @@ const AddMovieModal = ({ show, handleClose, onMovieAdded }) => {
       notes,
       thumbnailURL
     };
-
+    const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3005';
     try {
-      const response = await axios.post('http://localhost:3005/api/movies', movieData);
+      const response = await axios.post(`${BASE_URL}/api/movies`, movieData);
 
       if (response.data.id) {
         setIsSuccess(true);
