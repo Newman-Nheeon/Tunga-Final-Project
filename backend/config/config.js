@@ -4,7 +4,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const corsConfig = {
     origin: function (origin, callback) {
         const whitelist = isProduction 
-            ? ['http://localhost:3002']
+            ? ['https://tunga-final-project-zp6p.vercel.app']
             : ['http://localhost:3000'];
 
         if (whitelist.indexOf(origin) !== -1 || !origin) {
