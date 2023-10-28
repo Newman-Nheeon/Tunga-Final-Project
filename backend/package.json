@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "NodeJS, Express Js\u001b[D\u001b[\u001b[\u001b[C\u001b[CJS, PostgresSQL Movie App ",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
