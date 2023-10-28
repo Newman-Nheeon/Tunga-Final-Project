@@ -24,6 +24,9 @@ pool.query('SELECT NOW()', (err, res) => {
 
 // Routes
 app.use('/api', movieRouter);
+app.get('/', (req, res) => {
+    res.send('Backend Server Running');
+  });
 
 // Start the server
 const PORT = process.env.PORT || 3005;
