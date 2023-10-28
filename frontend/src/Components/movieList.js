@@ -7,11 +7,13 @@ import MovieContext from './MovieContext';
 
 const MovieList = () => {
   const context = useContext(MovieContext);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3005';
+
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get('http://localhost:3005/api/movies');
+        const response = await axios.get(`${BASE_URL}/api/movies`);
         context.setMovies(response.data); // Assuming setMovies is a function in your context
       } catch (error) {
         console.error("Error fetching the movies:", error);
